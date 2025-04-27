@@ -1,0 +1,31 @@
+## SQL Questions
+
+👨‍💻 SQL Interview Questions And Answers for Freshers (SQL Basic Questions):
+01:00 - Q.1 Difference Between DBMS and RDBMS
+02:19 - Q.2 Primary Key and Foreign Key
+03:33 - Q.3 Constraints and Their Types
+05:28 - Q.4 DDL and DML Commands
+07:18 - Q.5 Difference Between Delete, Drop, and Truncate
+
+👨‍💻 Intermediate Interview Questions SQL (SQL Questions to Clear Interviews):
+08:48 - Q.6 Group By Vs Order By Clause
+10:46 - Q.7 Difference Between Where And Having Clauses
+12:26 - Q.8 Aggregate Function with Example
+13:43 - Q.9 Indexing and Clustered Indexing
+14:53 - Q.10 Normalisation and Different Types of Normal Forms
+
+👨‍💻 SQL Interview Questions And Answers for Experienced (Top SQL Questions):
+17:14 - Q.11 Union and Union All Operator in SQL
+18:42 - Q.12 Query to Find Second Highest Salary in a Table - SELECT EMP_ID,NAME FROM (Select MAX(Salary) From Table where salary < (Select max(Salary) from Table ))
+20:09 - Q.13 Views in SQL
+21:22 - Q.14 How Can You Convert Text into Date Format? select str_to_date(Date,'%d-%m-%Y') from table
+21:53 - Q.15 What are Triggers in SQL  - Triggers are like reflex action which allow you to set up an automatic action.
+
+
+CREATE TRIGGER log_employee_insert
+AFTER INSERT ON employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO employee_log (employee_id, action, action_time)
+    VALUES (NEW.employee_id, 'INSERT', NOW());
+END;
