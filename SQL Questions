@@ -29,3 +29,85 @@ BEGIN
     INSERT INTO employee_log (employee_id, action, action_time)
     VALUES (NEW.employee_id, 'INSERT', NOW());
 END;
+
+
+Find the second highest salary from an Employee table—without using LIMIT. 
+
+🔹 Identify duplicate records in an Orders table.
+
+SELECT OrderID, COUNT(*)
+FROM Orders
+GROUP BY OrderID
+HAVING COUNT(*) > 1;
+
+
+ 🔹 Find employees whose salary is greater than their manager’s salary. 
+
+
+SELECT e.EmployeeID, e.EmployeeName, e.Salary, m.ManagerID, m.ManagerName, m.Salary AS ManagerSalary
+FROM Employees e
+JOIN Employees m ON e.ManagerID = m.EmployeeID
+WHERE e.Salary > m.Salary;
+
+
+🔹 Detect consecutive repeating numbers in a column. 
+
+
+SELECT Number, COUNT(*)
+FROM (
+    SELECT Number, 
+           LAG(Number) OVER (ORDER BY ID) AS PrevNumber
+    FROM Numbers
+) AS SubQuery
+WHERE Number = PrevNumber
+GROUP BY Number;
+
+
+🔹 Use self-joins to list employees with the same manager. 
+
+SELECT Number, COUNT(*)
+FROM (
+    SELECT Number, 
+           LAG(Number) OVER (ORDER BY ID) AS PrevNumber
+    FROM Numbers
+) AS SubQuery
+WHERE Number = PrevNumber
+GROUP BY Number;
+
+
+🔹 Calculate a running total (cumulative sum) of sales per month. 
+
+SELECT Month, Sales,
+       SUM(Sales) OVER (ORDER BY Month) AS RunningTotal
+FROM MonthlySales;
+
+
+🔹 Explain RANK(), DENSE_RANK(), and ROW_NUMBER(). 
+RANK(): Assigns a unique rank to each row within a partition of a result set, with gaps in the ranking sequence when there are ties.
+DENSE_RANK(): Similar to RANK(), but without gaps in the ranking sequence when there are ties.
+ROW_NUMBER(): Assigns a unique sequential integer to rows within a partition of a result set, without considering ties.
+
+🔹 Find users who have taken at least one ride every day in the last 10 days.
+SELECT UserID
+FROM Rides
+WHERE RideDate >= DATEADD(day, -10, GETDATE())
+GROUP BY UserID
+HAVING COUNT(DISTINCT RideDate) = 10;
+
+
+ 🔹 Calculate the percentage of successful payments per user.
+
+
+SELECT UserID,
+       (SUM(CASE WHEN PaymentStatus = 'Successful' THEN 1 ELSE 0 END) * 100.0 / COUNT(*)) AS SuccessRate
+FROM Payments
+GROUP BY UserID;
+
+
+ 🔹 Optimize slow queries for better performance.
+
+Indexing: Ensure appropriate indexes are in place.
+Query Optimization: Rewrite queries for efficiency.
+Analyze Execution Plans: Use tools to analyze and optimize execution plans.
+Partitioning: Split large tables into smaller, more manageable pieces.
+Caching: Use caching strategies to reduce database load.
