@@ -111,3 +111,8 @@ Query Optimization: Rewrite queries for efficiency.
 Analyze Execution Plans: Use tools to analyze and optimize execution plans.
 Partitioning: Split large tables into smaller, more manageable pieces.
 Caching: Use caching strategies to reduce database load.
+
+What are scalar and aggregate function in sql?
+
+What does coalesce function do in sql?
+
